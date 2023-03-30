@@ -18,11 +18,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.util.DefaultUriBuilderFactory;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-
 import reactor.core.publisher.Mono;
 
 @Service
@@ -44,8 +39,7 @@ public class InfoObraService {
                 .build();
     }
 
-    public Object getProject(String code) {
-        ObjectMapper objectMapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
+    public Map getProjectMap(String code) {
         Mono<String> response = client.post()
                 .uri(uriBuilder -> uriBuilder.path("/ciudadano/wfm_obras_mostrar_1.aspx")
                         .queryParam("ID", code).build())
@@ -56,10 +50,9 @@ public class InfoObraService {
                         res -> res.bodyToMono(String.class).map(RuntimeException::new))
                 .bodyToMono(String.class);
         Document doc = Jsoup.parse(response.block());
-        try {
+      
 
-            return objectMapper.writeValueAsString(
-                    doc.body().select("article").first().select("> div.form-horizontal").stream()
+            return doc.body().select("article").first().select("> div.form-horizontal").stream()
                             .reduce(new HashMap<String,Object>(), (m, e) -> {
 
                                 Elements tabs = e.select(".final_tab");
@@ -117,10 +110,8 @@ public class InfoObraService {
                             (m, m2) -> {
                                 m.putAll(m2);
                                 return m;
-                            }));
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
+                            });
+   
     }
 
     private List toList(Element table) {

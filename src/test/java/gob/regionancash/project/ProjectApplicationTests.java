@@ -56,7 +56,7 @@ class ProjectApplicationTests {
 	void InfoObraServiceTest() {
 		InfoObraProject infoObraProject=infoObraService.getProject(121964);
 		assertEquals("Rggoi•", infoObraProject.getCode());
-		assertEquals("Rggoi•",infoObraService.getProject( infoObraProject.getCode()));
+		assertEquals("Rggoi•",infoObraService.getProjectMap( infoObraProject.getCode()));
 	}
 
 	//@Transactional

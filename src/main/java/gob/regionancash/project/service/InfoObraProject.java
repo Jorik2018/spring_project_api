@@ -15,5 +15,7 @@ public class InfoObraProject {
     private String code;
 
     private String state;
+
+    private String resident;
     
 }

@@ -108,27 +108,27 @@ public class Project implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     private Double fileAmount;
 
-    private Double supervisionAmount;
-    
     private Double executionAmount;
+
+    @Size(max = 255)
+    private String executionMode;
     
     @Size(max = 255)
     private String extension;
 
     @Size(max = 255)
-    private String modalidadEjecucion;
+    private String supervision;
 
-    @Size(max = 255)
-    private String supervicion;
+    private Double supervisionAmount;
     
     @Size(max = 100)
-    private String tipoInversion;
+    private String investmentType;
     
     @Size(max = 255)
     private String resident;
     
     @Size(max = 255)
-    private String Coordinator;
+    private String coordinator;
     
     @Size(max = 255)
     private String montoValorizado;
@@ -231,5 +231,8 @@ public class Project implements Serializable {
     private Double cofinanciamiento;
 
     private Double aporteAeo;
+
+    @Temporal(TemporalType.DATE)
+    private Date infobrasUpdatedAt;
 
 }
