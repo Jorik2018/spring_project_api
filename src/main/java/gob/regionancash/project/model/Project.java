@@ -82,7 +82,7 @@ public class Project implements Serializable {
     private Integer dispatchId;
 
     @Size(max = 255)
-    private String tipoProceso;
+    private String processType;
 
     @Size(max = 255)
     private String provider;
