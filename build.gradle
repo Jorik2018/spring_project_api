@@ -19,19 +19,21 @@ repositories {
 }
 
 dependencies {
+	annotationProcessor 'org.projectlombok:lombok'
+	compileOnly 'org.projectlombok:lombok'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
-	//implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.boot:spring-boot-starter-webflux'
-	implementation 'jakarta.servlet:jakarta.servlet-api:5.0.0'
-
-	implementation 'org.jsoup:jsoup:1.15.4'
-	compileOnly 'org.projectlombok:lombok'
-	runtimeOnly 'com.mysql:mysql-connector-j'
-	annotationProcessor 'org.projectlombok:lombok'
+	implementation 'org.springframework.boot:spring-boot-starter-web' // Dependencia principal de Spring MVC
+	implementation 'org.springframework.boot:spring-boot-starter-validation' // Opcional: dependencia para validación de datos
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
-	testImplementation 'org.springframework.boot:spring-boot-starter-web'
+
+	//implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	implementation 'jakarta.servlet:jakarta.servlet-api:6.0.0'
+
+	implementation 'org.jsoup:jsoup:1.15.4'
+	runtimeOnly 'com.mysql:mysql-connector-j'
 	testImplementation 'io.projectreactor:reactor-test'
 	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
 	testImplementation 'org.awaitility:awaitility:4.2.0'

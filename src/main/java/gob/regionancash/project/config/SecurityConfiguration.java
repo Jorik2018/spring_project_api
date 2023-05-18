@@ -10,7 +10,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
-//@Configuration
+@Configuration
 //@EnableWebSecurity
 @RequiredArgsConstructor
 /*@EnableGlobalMethodSecurity(prePostEnabled = true)*/
@@ -18,19 +18,19 @@ import org.springframework.web.filter.CorsFilter;
 //@EnableWebFluxSecurity(exclude = WebFluxSecurityConfiguration.class)
 public class SecurityConfiguration {
 
-   /* //private final JwtAuthenticationFilter jwtAuthFilter;
+   //private final JwtAuthenticationFilter jwtAuthFilter;
 
     //private final AuthenticationProvider authenticationProvider;
 
-    @Bean
+   /* @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         System.out.println("SecurityFilterChainSecurityFilterChainSecurityFilterChainSecurityFilterChain=======");
         http
                 .cors().and()
                 .csrf().disable()
-                *//*.authorizeRequests()//.authorizeHttpRequests()
-                .requestMatchers("/*")
-                .permitAll()*//*
+                //*.authorizeRequests()//.authorizeHttpRequests()
+                //.requestMatchers("/*")
+                .permitAll()
                 .authorizeRequests()
                 //.requestMatchers("/**").permitAll()
                 .requestMatchers("/**").anonymous()//.permitAll()
@@ -51,7 +51,7 @@ public class SecurityConfiguration {
                 ;
 
         return http.build();
-    }
+    }*/
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
@@ -67,6 +67,6 @@ public class SecurityConfiguration {
     @Bean
     public CorsFilter corsFilter() {
         return new CorsFilter(corsConfigurationSource());
-    }*/
+    }
 
 }

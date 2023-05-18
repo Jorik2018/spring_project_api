@@ -1,8 +1,10 @@
 package gob.regionancash.project.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
+import org.springframework.cglib.core.Local;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import jakarta.persistence.*;
@@ -30,207 +32,98 @@ public class Project implements Serializable {
     @Column(name = "estatus_seace")
     private String estadoProceso;
 
-    @Size(max = 50)
-    private String estadoInversion;
+    /*1 = Por Iniciar ; 2 = En Ejecucion; 3 = Suspendidas - Paralizadas; 4 = Ejecucion por ARRCC; 5 = En Recepcion; 6 = En Liquidacion; 7 = Contrato Resuelto*/
+    @Column(nullable = false)
+    private String etapaProyecto;
 
-    @Size(max = 255)
-    private String unidadEjecutora;
+    @Column(length = 10, nullable = false)
+    private String cui;
 
-    private Integer cui;
+    @Column(columnDefinition = "TEXT", nullable = false)
+    private String denominacionProyecto;
 
-    @Size(max = 255)
-    private String province;
+    @Column(length = 64)
+    private String plazoEjecucion;
 
-    private String district;
+    @Column(columnDefinition = "decimal(18,2)")
+    private String saldoPresupuestal;
 
-    private Integer snip;
+    @Column(length = 64)
+    private String pia;
 
-    private Integer sisgedo;
+    @Column(columnDefinition = "decimal(18,2)")
+    private String montoInversion;
 
-    private Long infobras;
+    @Column(columnDefinition = "TEXT")
+    private String contratistaEjecutor;
 
-    private String infobrasCode;
+    @Column(columnDefinition = "decimal(18,2)")
+    private String montoContratoContratista;
 
-    private String cadenaProductiva;
+    @Column(columnDefinition = "TEXT")
+    private String observacionInfo;
 
-    private String category;
+    @Column(columnDefinition = "TEXT")
+    private String observacionLocal;
 
-    @Size(max = 350)
-    private String description;
+    private LocalDate fechaInicioContractual;
 
-    @Size(max = 255)
-    private String rubroFinanciamiento;
+    private LocalDate fechaCulminacionContractual;
 
-    @Size(max = 100)
-    private String cadenaFuncional;
+    private LocalDate fechaReprogramadaCulminacion;
 
-    @Size(max = 255)
-    private String unidadFormuladora;
+    @Column(length = 64)
+    private String avanceFisico;
 
-    @Size(max = 255)
-    private String unidadEvaluadora;
+    @Column(columnDefinition = "TEXT")
+    private String contratistaSupervisor;
 
-    @Size(max = 255)
-    private String executingContractor;
+    @Column(columnDefinition = "decimal(18,2)")
+    private String montoContratistaSupervisor;
 
-    @Size(max = 40)
-    private String ruc;
+    @Column(length = 512)
+    private String coordinador;
 
-    private Integer activityId;
+    @Column(length = 512)
+    private String tipoCuaderno;
 
-    @Column(name = "run_id")
-    private Integer dispatchId;
+    @Column(columnDefinition = "decimal(18,2)")
+    private String presupuestar;
 
-    @Size(max = 255)
-    private String processType;
+    @Column(length = 4)
+    private String certificado;
 
-    @Size(max = 255)
-    private String provider;
-    
-    @Size(max = 255)
-    private String contract;
-    //PLAZO EJECUCIÓN cuadro
-    private Integer limitDate;
-    
-    private String executionTime;
-    
-    @Temporal(TemporalType.DATE)
-    private Date startDate;
-    
-    @Temporal(TemporalType.DATE)
-    private Date endDate;
+    private LocalDate fechaSuspension;
 
-    @Temporal(TemporalType.DATE)
-    private Date actualReactivationDate;
+    @Column(length = 512)
+    private String residente;
 
-    @Temporal(TemporalType.DATE)
-    private Date announcementDate;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    private Double fileAmount;
+    @Column(length = 512)
+    private String nroResolucion;
 
-    private Double executionAmount;
+    private LocalDate fechaResolucion;
 
-    @Size(max = 255)
-    private String executionMode;
-    
-    @Size(max = 255)
-    private String extension;
+    @Column(length = 512)
+    private String nroContrato;
 
-    @Size(max = 255)
-    private String supervision;
+    @Column(length = 512)
+    private String presidente;
 
-    private Double supervisionAmount;
-    
-    @Size(max = 100)
-    private String investmentType;
-    
-    @Size(max = 255)
-    private String resident;
-    
-    @Size(max = 255)
-    private String coordinator;
-    
-    @Size(max = 255)
-    private String montoValorizado;
-    
-    @Size(max = 255)
-    private String saldoValorizar;
-    @Size(max = 255)
-    private String responsable;
+    @Column(length = 512)
+    private String primerMiembro;
 
-    @Size(max = 600)
-    private String investmentSituation;
+    @Column(length = 512)
+    private String asesorTecnico;
 
-    private Double physicalAdvance;
+    @Column(length = 512)
+    private String tipoContrato;
 
-    @Temporal(TemporalType.DATE)
-    private Date physicalAdvanceDate;
+    private LocalDate fechaInicioLiquidacion;
 
-    private Double scheduledAdvance;
+    private LocalDate fechaFinLiquidacion;
 
-    private Double infobrasPim;
-
-    private Double updatedCost;
-
-    private Double devengadoAcumulado;
-
-    private Double accrualBalance; //saldo_devengar 2023
-
-    private Double pia;
-
-    private String receptionCommittee;
-
-    private String notebookType;
-
-    private String missing_documents;
-
-    private String certificated;
-
-    private Double pim;
-
-    private Double certification;
-
-    private Double accrued;
-
-    @Size(max = 600)
-    private String comment;
-
-    @Column(name = "m_01")
-    private Double m01;
-
-    @Column(name = "m_02")
-    private Double m02;
-
-    @Column(name = "m_03")
-    private Double m03;
-
-    @Column(name = "m_04")
-    private Double m04;
-
-    @Column(name = "m_05")
-    private Double m05;
-
-    @Column(name = "m_06")
-    private Double m06;
-
-    @Column(name = "m_07")
-    private Double m07;
-
-    @Column(name = "m_08")
-    private Double m08;
-
-    @Column(name = "m_09")
-    private Double m09;
-
-    @Column(name = "m_10")
-    private Double m10;
-
-    @Column(name = "m_11")
-    private Double m11;
-
-    @Column(name = "m_12")
-    private Double m12;
-
-    private Double total;
-
-    private Double currentProgress;
-
-    @Transient
-    private Object ext;
-
-    private Double lat;
-
-    private Double lon;
-
-    private Integer nid;
-
-    private boolean canceled = false;
-
-    private String status;
-
-    private Double cofinanciamiento;
-
-    private Double aporteAeo;
+    @Column(length = 128)
+    private String estadoLiquidacion;
 
     @Temporal(TemporalType.DATE)
     private Date infobrasUpdatedAt;

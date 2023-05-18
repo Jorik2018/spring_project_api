@@ -17,7 +17,7 @@ import jakarta.validation.Valid;
 
 
 @RestController
-@RequestMapping("")
+@RequestMapping("/api/project")
 public class ProjectController {
     
     @Autowired
@@ -26,11 +26,7 @@ public class ProjectController {
     @GetMapping("/{from}/{to}")
     public Page getAllProjectes(@PathVariable(value = "from") int from,
                                  @PathVariable(value = "to") int to,
-                                 @RequestParam(name = "activo", required = false, defaultValue = "1") Integer activo,
-                                 @RequestParam(name = "dependencia", required = false) Long dependenciaId,
-                                 @RequestParam(name = "fecha", required = false) LocalDate fecha
-
-    ) throws Exception {
+                                 @RequestParam(name = "etapaProyecto", defaultValue = "Por Iniciar",required = false) String etapaProyecto) throws Exception {
             return projectRepository.findAll(PageRequest.of(from, to));
     }
 

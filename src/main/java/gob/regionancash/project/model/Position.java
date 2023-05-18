@@ -37,6 +37,6 @@ public class Position implements Serializable {
     @Column(name = "abreviatura")
     private String acronym;
     @Size(max = 1)
-    private boolean status=true;
+    private boolean status;
 
 }

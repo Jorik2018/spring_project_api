@@ -23,11 +23,13 @@ public class InfoObraSchedule {
 	private ProjectRepository projectRepository;
 
 
-    @Scheduled(fixedDelay = 10000/*fixedRate = 1000*/)
+   // @Scheduled(fixedDelay = 10000/*fixedRate = 1000*/)
 	//@Transactional
 	public void scheduleFixedDelayTask() {
-		List<Project> l=projectRepository.findProjectToUpdate();
-		l.stream().filter((e)->e.getInfobrasCode()==null).findFirst().ifPresent((e)->{
+		/*List<Project> l=projectRepository.findProjectToUpdate();
+		l.stream()
+				///.filter((e)->e.getInfobrasCode()==null)
+				.findFirst().ifPresent((e)->{
 			if(e.getInfobrasCode()==null){
 				InfoObraProject infoObraProject=infoObraService.getProject(e.getInfobras());
 				e.setInfobrasCode(infoObraProject.getCode());
@@ -46,7 +48,7 @@ public class InfoObraSchedule {
 			}
 			projectRepository.save(e);
 			System.out.println(e);
-		});
+		});*/
 	}
     
 }
